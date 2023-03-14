@@ -36,14 +36,14 @@ export default function AdminCreatePost() {
           onChange={(event) => setDescription(event.target.value)}
           value={description}
         />
-        <div className="flex-grow flex gap-4 h-full">
+        <div className="flex-grow flex gap-4">
           <TextArea
-            className="flex-1 resize-none"
+            className="flex-1 resize-none overflow-auto"
             placeholder="New Post Content (Markdown Syntax)"
             onChange={(event) => setContent(event.target.value)}
             value={content}
           />
-          <div className="flex-1 py-2 px-4 border border-gray-300 rounded-lg overflow-scroll">
+          <div className="flex-1 min-h-full h-0 py-2 px-4 border border-gray-300 rounded-lg overflow-auto">
             <div
               className="prose"
               dangerouslySetInnerHTML={{ __html: marked.parse(content || "New Post Content Preview") }}
