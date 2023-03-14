@@ -3,7 +3,7 @@ import { twMerge } from "tailwind-merge";
 
 enum Colors {
   blue = "bg-blue-600 hover:bg-blue-700 text-gray-50",
-  green = "bg-green-600 hover:bg-blue-700 text-gray-50",
+  green = "bg-green-600 hover:bg-green-700 text-gray-50",
   red = "bg-red-600 hover:bg-red-700 text-gray-50",
 }
 
