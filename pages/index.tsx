@@ -8,13 +8,20 @@ export default function Home() {
       <header className="w-full flex flex-col items-center">
         <Image className="w-32 rounded-full" src={me} alt="logo" />
         <h1 className="text-3xl my-4 font-bold">My Personal Blog</h1>
-        <p>Welcome to my personal blog. A place where I share all kind of thoughts about pretty much anything that interests me!</p>
+        <p>
+          Welcome to my personal blog. A place where I share all kind of
+          thoughts about pretty much anything that interests me!
+        </p>
         <nav className="w-full flex divide-x-2 divide-gray-300 justify-center my-4 py-4">
-          <Link className="px-4" href="/">Home</Link>
+          <Link className="px-4" href="/">
+            Home
+          </Link>
         </nav>
       </header>
       <main>
-        <h1 className="pb-2 pl-2 text-3xl font-bold border-b border-gray-300">Latest Posts</h1>
+        <h1 className="pb-2 pl-2 text-3xl font-bold border-b border-gray-300">
+          Latest Posts
+        </h1>
       </main>
     </div>
   );
