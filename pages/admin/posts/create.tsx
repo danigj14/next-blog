@@ -2,8 +2,11 @@ import AdminLayout from "@/components/admin/AdminLayout";
 import Button from "@/components/Button";
 import Input from "@/components/Input";
 import TextArea from "@/components/TextArea";
+import useCreatePostMutation from "@/lib/hooks/useCreatePostMutation";
 import { faBan, faCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useMutation } from "@tanstack/react-query";
+import axios from "axios";
 import { marked } from "marked";
 import { useState } from "react";
 
@@ -12,11 +15,17 @@ export default function AdminCreatePost() {
   const [description, setDescription] = useState("");
   const [content, setContent] = useState("");
 
+  const createPostMutation = useCreatePostMutation();
+
+  const createPost = () => {
+    createPostMutation.mutate({ title, description, content });
+  };
+
   return (
     <AdminLayout>
       <div className="flex pb-4 gap-4">
         <h1 className="text-3xl">Create New Post</h1>
-        <Button color="green" className="ml-auto">
+        <Button color="green" className="ml-auto" onClick={() => createPost()}>
           <FontAwesomeIcon icon={faCheck} className="pr-4" />
           Save Post
         </Button>
