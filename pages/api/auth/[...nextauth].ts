@@ -13,7 +13,7 @@ export const authOptions = {
         },
       },
       authorize: async (credentials, req) => {
-        const adminSecretKey = process.env.ADMIN_SECRET_KEY;
+        const adminSecretKey = process.env.ADMIN_PASSWORD;
 
         if(!adminSecretKey)
           return null;
