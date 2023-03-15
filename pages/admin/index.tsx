@@ -1,9 +1,9 @@
 import AdminLayout from "@/components/admin/AdminLayout";
 import Button from "@/components/Button";
-import NavCard from "@/components/admin/NavCard";
-import NavLink from "@/components/admin/NavLink";
-import { faArrowRightFromBracket, faFileLines } from "@fortawesome/free-solid-svg-icons";
-import { faGear } from "@fortawesome/free-solid-svg-icons";
+import {
+  faArrowRightFromBracket,
+  faFileLines,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function AdminDashboard() {
@@ -15,8 +15,14 @@ export default function AdminDashboard() {
       </p>
       <h2 className="text-2xl pb-4">Admin Panel Shortcuts</h2>
       <div className="w-full flex gap-4">
-        <Button href="/admin/posts"><FontAwesomeIcon icon={faFileLines} className="pr-4"/>Manage Posts</Button>
-        <Button color="green" href="/"><FontAwesomeIcon icon={faArrowRightFromBracket} className="pr-4"/>Go Back to Blog</Button>
+        <Button href="/admin/posts">
+          <FontAwesomeIcon icon={faFileLines} className="pr-4" />
+          Manage Posts
+        </Button>
+        <Button color="green" href="/">
+          <FontAwesomeIcon icon={faArrowRightFromBracket} className="pr-4" />
+          Go Back to Blog
+        </Button>
       </div>
     </AdminLayout>
   );
