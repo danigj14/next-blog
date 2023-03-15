@@ -46,7 +46,9 @@ export default function AdminCreatePost() {
           <div className="flex-1 min-h-full h-0 py-2 px-4 border border-gray-300 rounded-lg overflow-auto">
             <div
               className="prose"
-              dangerouslySetInnerHTML={{ __html: marked.parse(content || "New Post Content Preview") }}
+              dangerouslySetInnerHTML={{
+                __html: marked.parse(content || "New Post Content Preview"),
+              }}
             />
           </div>
         </div>
