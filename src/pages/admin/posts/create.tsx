@@ -13,15 +13,17 @@ export default function AdminCreatePost() {
 
   const createPostMutation = useCreatePostMutation();
 
-  const createPost = () => {
-    createPostMutation.mutate({ title, description, content });
-  };
-
   return (
     <AdminLayout>
       <div className="flex pb-4 gap-4">
         <h1 className="text-3xl">Create New Post</h1>
-        <Button color="green" className="ml-auto" onClick={() => createPost()}>
+        <Button
+          color="green"
+          className="ml-auto"
+          onClick={() =>
+            createPostMutation.mutate({ title, description, content })
+          }
+        >
           <FontAwesomeIcon icon={faCheck} className="pr-4" />
           Save Post
         </Button>
@@ -52,7 +54,7 @@ export default function AdminCreatePost() {
             <div
               className="prose"
               dangerouslySetInnerHTML={{
-                __html: marked.parse(content || "New Post Content Preview"),
+                __html: marked.parse(content || "New Post Content (Preview)"),
               }}
             />
           </div>

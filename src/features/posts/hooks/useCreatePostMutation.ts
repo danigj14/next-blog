@@ -3,7 +3,7 @@ import axios from "axios";
 import { Post, PostCreateParams } from "../types";
 
 export default function useCreatePostMutation() {
-  return useMutation<Post, unknown, PostCreateParams>({
-    mutationFn: async (post) => await axios.post("/api/posts", post),
-  });
+  return useMutation<Post, unknown, PostCreateParams>((postCreateParams) =>
+    axios.post("/api/posts", postCreateParams).then((result) => result.data)
+  );
 }
