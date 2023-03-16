@@ -46,7 +46,7 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
           </NavLink>
         </div>
       </nav>
-      <main className="p-6 flex-grow h-full bg-gray-50 flex flex-col">
+      <main className="p-6 flex-grow h-full bg-gray-50 flex flex-col overflow-auto">
         {children}
       </main>
     </div>
