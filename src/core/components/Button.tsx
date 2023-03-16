@@ -12,11 +12,7 @@ type ButtonProps = (
   | React.ButtonHTMLAttributes<HTMLButtonElement>
 ) & { color?: keyof typeof Colors };
 
-export default function Button({
-  color = "blue",
-  className,
-  ...props
-}: ButtonProps) {
+export function Button({ color = "blue", className, ...props }: ButtonProps) {
   const style = twMerge(
     "font-bold px-4 py-2 rounded-xl transition-all",
     Colors[color],

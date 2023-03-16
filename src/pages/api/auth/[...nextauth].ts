@@ -15,14 +15,13 @@ export const authOptions = {
       authorize: async (credentials, req) => {
         const adminSecretKey = process.env.ADMIN_PASSWORD;
 
-        if(!adminSecretKey)
-          return null;
+        if (!adminSecretKey) return null;
 
-        if(credentials?.adminSecretKey === adminSecretKey)
-          return {id: "0", email: null, name: null, image: null};
+        if (credentials?.adminSecretKey === adminSecretKey)
+          return { id: "0", email: null, name: null, image: null };
 
         return null;
-      }
+      },
     }),
   ],
 };

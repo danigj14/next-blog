@@ -1,5 +1,5 @@
-import AdminLayout from "@/components/admin/AdminLayout";
-import Button from "@/components/Button";
+import { Button } from "@/core/components";
+import AdminLayout from "@/features/admin/components/AdminLayout";
 import { faFileCirclePlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -12,7 +12,10 @@ export default function AdminPosts() {
       </p>
       <div className="flex flex-col">
         <div className="flex">
-          <Button href="/admin/posts/create"><FontAwesomeIcon icon={faFileCirclePlus} className="pr-4"/>Create New Post</Button>
+          <Button href="/admin/posts/create">
+            <FontAwesomeIcon icon={faFileCirclePlus} className="pr-4" />
+            Create New Post
+          </Button>
         </div>
       </div>
     </AdminLayout>

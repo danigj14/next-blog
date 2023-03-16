@@ -1,5 +1,5 @@
-import AdminLayout from "@/components/admin/AdminLayout";
-import Button from "@/components/Button";
+import { Button } from "@/core/components";
+import AdminLayout from "@/features/admin/components/AdminLayout";
 import {
   faArrowRightFromBracket,
   faFileLines,

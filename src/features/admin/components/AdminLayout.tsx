@@ -1,5 +1,8 @@
-import {  } from "@fortawesome/free-regular-svg-icons";
-import { faArrowRightFromBracket, faFileLines, faHome } from "@fortawesome/free-solid-svg-icons";
+import {
+  faArrowRightFromBracket,
+  faFileLines,
+  faHome,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import NavLink from "./NavLink";
 
@@ -33,7 +36,7 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
           </NavLink>
         </div>
         <div className="flex flex-col gap-1 border-t border-gray-300 py-2">
-        <NavLink href="/">
+          <NavLink href="/">
             <FontAwesomeIcon
               icon={faArrowRightFromBracket}
               className="text-green-600 px-4"

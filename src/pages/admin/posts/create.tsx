@@ -1,12 +1,8 @@
-import AdminLayout from "@/components/admin/AdminLayout";
-import Button from "@/components/Button";
-import Input from "@/components/Input";
-import TextArea from "@/components/TextArea";
-import useCreatePostMutation from "@/lib/hooks/useCreatePostMutation";
+import { Button, Input, TextArea } from "@/core/components";
+import AdminLayout from "@/features/admin/components/AdminLayout";
+import useCreatePostMutation from "@/features/posts/hooks/useCreatePostMutation";
 import { faBan, faCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useMutation } from "@tanstack/react-query";
-import axios from "axios";
 import { marked } from "marked";
 import { useState } from "react";
 
