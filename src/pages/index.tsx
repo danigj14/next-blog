@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import me from "@/public/images/me.jpeg";
+import me from "/public/images/me.jpeg";
 
 export default function Home() {
   return (
