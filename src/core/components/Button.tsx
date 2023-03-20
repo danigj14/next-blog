@@ -14,7 +14,7 @@ type ButtonProps = (
 
 export function Button({ color = "blue", className, ...props }: ButtonProps) {
   const style = twMerge(
-    "font-bold px-4 py-2 rounded-xl transition-all",
+    "text-sm font-bold px-4 py-2 rounded-xl transition-all",
     Colors[color],
     className
   );
