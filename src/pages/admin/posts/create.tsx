@@ -27,7 +27,11 @@ export default function AdminCreatePost() {
 
   return (
     <AdminLayout>
-      <PostForm heading="Create New Post" onSubmit={onSubmit} onDiscard={() => {}} />
+      <PostForm
+        heading="Create New Post"
+        onSubmit={onSubmit}
+        onDiscard={() => push("/admin/posts")}
+      />
     </AdminLayout>
   );
 }

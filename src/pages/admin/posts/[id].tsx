@@ -3,7 +3,8 @@ import useNotifications from "@/core/hooks/useNotifications";
 import AdminLayout from "@/features/admin/components/AdminLayout";
 import PostForm from "@/features/admin/components/PostForm";
 import useCreatePostMutation from "@/features/posts/hooks/useCreatePostMutation";
-import { PostCreateParams } from "@/features/posts/types";
+import useUpdatePostMutation from "@/features/posts/hooks/useUpdatePostMutation";
+import { PostCreateParams, PostUpdateParams } from "@/features/posts/types";
 import { Post } from "@prisma/client";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
@@ -38,7 +39,7 @@ interface AdminEditPostProps {
 
 export default function AdminEditPost({ post }: AdminEditPostProps) {
   //TODO CHANGE TO EDITPOSTMUTATION
-  const createPostMutation = useCreatePostMutation();
+  const updatePostMutation = useUpdatePostMutation();
   const { push } = useRouter();
   const notifications = useNotifications();
 
@@ -48,8 +49,8 @@ export default function AdminEditPost({ post }: AdminEditPostProps) {
     });
   };
 
-  const onSubmit = (params: PostCreateParams) => {
-    createPostMutation.mutate(params, {
+  const onSubmit = (params: PostUpdateParams) => {
+    updatePostMutation.mutate(params, {
       onSuccess: () => {
         push("/admin/posts");
         showSuccessNotification();
@@ -59,7 +60,12 @@ export default function AdminEditPost({ post }: AdminEditPostProps) {
 
   return (
     <AdminLayout>
-      <PostForm heading="Edit Post" initialValues={post} onSubmit={onSubmit} onDiscard={() => {}} />
+      <PostForm
+        heading="Edit Post"
+        initialValues={post}
+        onSubmit={(params) => onSubmit({ id: post.id, ...params })}
+        onDiscard={() => push("/admin/posts")}
+      />
     </AdminLayout>
   );
 }
