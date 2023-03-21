@@ -1,7 +1,7 @@
 import { Button, Input, TextArea } from "@/core/components";
 import { faBan, faCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import DOMPurify from "dompurify";
+import DOMPurify from "isomorphic-dompurify";
 import { marked } from "marked";
 import { FormEventHandler, useState } from "react";
 
