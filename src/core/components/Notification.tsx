@@ -22,11 +22,12 @@ export default function Notification({
   });
 
   return (
-    <div className="px-10 py-5 border rounded-lg shadow bg-green-600 text-gray-50 relative">
-      <button className="absolute top-0 right-2" onClick={onClose}>
+    <div className="px-10 py-5 border rounded-lg shadow bg-green-600 text-gray-50 flex items-center">
+      <FontAwesomeIcon icon={faCheck} className="pr-2" />
+      {message}
+      <button className="pl-10" onClick={onClose}>
         <FontAwesomeIcon icon={faXmark} />
       </button>
-      <FontAwesomeIcon icon={faCheck} className="pr-2" />{message}
     </div>
   );
 }
