@@ -1,6 +1,7 @@
 import { prisma } from "@/core/db";
 import Layout from "@/features/blog/components/Layout";
 import { Post } from "@prisma/client";
+import { format } from "date-fns";
 import DOMPurify from "dompurify";
 import { marked } from "marked";
 import { GetServerSideProps } from "next";
@@ -24,9 +25,12 @@ export const getServerSideProps: GetServerSideProps<PostProps> = async (
 export default function PostPage({ post }: PostProps) {
   return (
     <Layout>
-      <h1 className="text-3xl font-bold px-2">{post.title}</h1>
+      <h1 className="text-3xl font-bold">{post.title}</h1>
+      <p className="text-md italic mt-1">
+        Published {format(post.createDate, "dd MMMM yyyy")}
+      </p>
       <div
-        className="px-2 pt-8 prose min-w-full"
+        className="pt-8 prose min-w-full"
         dangerouslySetInnerHTML={{
           __html: DOMPurify.sanitize(marked.parse(post.content)),
         }}
