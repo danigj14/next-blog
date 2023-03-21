@@ -34,14 +34,19 @@ export default function Home({ posts }: HomeProps) {
           </p>
         </div>
       </header>
-      <h1 className="py-4 pl-2 text-3xl font-bold border-b border-gray-300">
-        Latest Posts
-      </h1>
-      {posts.length ? (
-        posts.map((post) => <PostListItem key={post.id} post={post} />)
-      ) : (
-        <p>There are no posts available!</p>
-      )}
+      <div className="flex flex-col">
+        <h1 className="py-4 pl-2 text-3xl font-bold border-b border-gray-300">
+          Latest Posts
+        </h1>
+        {posts.length ? (
+          posts.map((post) => <PostListItem key={post.id} post={post} />)
+        ) : (
+          <p>There are no posts available!</p>
+        )}
+        <Link className="px-2 mt-8 text-xl w-fill w-fit hover:text-gray-500" href="/posts">
+          Navigate all Blog Posts <FontAwesomeIcon icon={faArrowRightLong} className="pl-1" />
+        </Link>
+      </div>
     </Layout>
   );
 }
