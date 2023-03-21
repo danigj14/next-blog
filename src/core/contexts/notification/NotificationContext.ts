@@ -8,4 +8,6 @@ interface NotificationContextProps {
   showNotification: (notification: NotificationSettings) => void;
 }
 
-export const NotificationContext = createContext<NotificationContextProps>({showNotification: () => {}});
+export const NotificationContext = createContext<NotificationContextProps>({
+  showNotification: () => {},
+});

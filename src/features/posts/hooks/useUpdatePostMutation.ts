@@ -5,6 +5,8 @@ import { PostUpdateParams } from "../types";
 
 export default function useUpdatePostMutation() {
   return useMutation<Post, unknown, PostUpdateParams>((postUpdateParams) =>
-    axios.put(`/api/posts/${postUpdateParams.id}`, postUpdateParams).then((result) => result.data)
+    axios
+      .put(`/api/posts/${postUpdateParams.id}`, postUpdateParams)
+      .then((result) => result.data)
   );
 }
