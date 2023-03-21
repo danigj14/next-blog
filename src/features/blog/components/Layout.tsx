@@ -1,23 +1,46 @@
-import Image from "next/image";
+import { faFileLines } from "@fortawesome/free-regular-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
-import me from "/public/images/me.jpeg";
 
 export default function Layout({ children }: { children?: React.ReactNode }) {
+  const session = useSession();
+
   return (
-    <div className="container mx-auto py-10">
-      <header className="w-full flex flex-col items-center">
-        <Image className="w-32 rounded-full" src={me} alt="logo" />
-        <h1 className="text-3xl my-4 font-bold">My Personal Blog</h1>
-        <p>
-          Welcome to my personal blog. A place where I share all kind of
-          thoughts about pretty much anything that interests me!
-        </p>
-        <nav className="w-full flex divide-x-2 divide-gray-300 justify-center my-4 py-4">
-          <Link className="px-4" href="/">
-            Home
-          </Link>
-        </nav>
-      </header>
+    <div className="container px-8 mx-auto">
+      <nav className="flex justify-between px-16 py-6">
+        <Link href="/">
+          <div className="flex items-center text-3xl gap-4">
+            <FontAwesomeIcon icon={faFileLines} className="text-4xl" />
+            Next Blog
+          </div>
+        </Link>
+        <ul className="flex gap-8 text-xl">
+          <li>
+            <Link href="/">Home</Link>
+          </li>
+          <li>
+            <Link href="/posts">Posts</Link>
+          </li>
+          <li>
+            <Link href="/tags">Tags</Link>
+          </li>
+          {session.data ? (
+            <>
+              <li>
+                <Link href="/admin">Admin Panel</Link>
+              </li>
+              <li>
+                <Link href="/api/auth/signout">Logout (Admin)</Link>
+              </li>
+            </>
+          ) : (
+            <li>
+              <Link href="/api/auth/signin">Login</Link>
+            </li>
+          )}
+        </ul>
+      </nav>
       <main>{children}</main>
     </div>
   );

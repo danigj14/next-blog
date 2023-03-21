@@ -25,7 +25,7 @@ export const getServerSideProps: GetServerSideProps<PostProps> = async (
 export default function PostPage({ post }: PostProps) {
   return (
     <Layout>
-      <h1 className="text-3xl font-bold">{post.title}</h1>
+      <h1 className="mt-6 text-3xl font-bold">{post.title}</h1>
       <p className="text-md italic mt-1">
         Published {format(post.createDate, "dd MMMM yyyy")}
       </p>
