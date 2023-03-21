@@ -64,7 +64,7 @@ function PostsTableItem({ post }: { post: Post }) {
         {format(post.createDate, "dd / MM / yyyy")}
       </td>
       <td className="pr-4 text-right text-xs">
-        <Button className="mr-2">
+        <Button className="mr-2" href={`/admin/posts/${post.id}`}>
           <FontAwesomeIcon icon={faPencil} className="pr-2" />
           Edit
         </Button>

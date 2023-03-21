@@ -12,7 +12,7 @@ export default function AdminCreatePost() {
 
   const showSuccessNotification = () => {
     notifications.showNotification({
-      message: "The post has been successfully created!",
+      message: "The post has been successfully created.",
     });
   };
 
@@ -27,7 +27,7 @@ export default function AdminCreatePost() {
 
   return (
     <AdminLayout>
-      <PostForm onSubmit={onSubmit} onDiscard={() => {}} />
+      <PostForm heading="Create New Post" onSubmit={onSubmit} onDiscard={() => {}} />
     </AdminLayout>
   );
 }

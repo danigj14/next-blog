@@ -11,12 +11,14 @@ interface PostFormParams {
 }
 
 interface PostFormProps {
+  heading: string;
   initialValues?: PostFormParams;
   onSubmit: (params: PostFormParams) => void;
   onDiscard: () => void;
 }
 
 export default function PostForm({
+  heading,
   initialValues,
   onSubmit = () => {},
   onDiscard = () => {},
@@ -35,7 +37,7 @@ export default function PostForm({
   return (
     <form onSubmit={handleSubmit} className="flex flex-col flex-grow">
       <div className="flex pb-4 gap-4">
-        <h1 className="text-3xl">Create New Post</h1>
+        <h1 className="text-3xl">{heading}</h1>
         <Button color="green" className="ml-auto" type="submit">
           <FontAwesomeIcon icon={faCheck} className="pr-2" />
           Save Post
