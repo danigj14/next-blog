@@ -1,5 +1,5 @@
-import Notification from "@/core/components/Notification";
-import { useEffect, useState } from "react";
+import { Notification } from "@/core/components";
+import { useState } from "react";
 import {
   NotificationContext,
   NotificationSettings,

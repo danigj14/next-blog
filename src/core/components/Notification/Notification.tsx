@@ -8,7 +8,7 @@ interface NotificationProps {
   closeTime?: number;
 }
 
-export default function Notification({
+export function Notification({
   message,
   onClose = () => {},
   closeTime = 0,
