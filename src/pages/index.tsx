@@ -1,5 +1,6 @@
 import { prisma } from "@/core/db";
 import Layout from "@/features/blog/components/Layout";
+import PostListItem from "@/features/posts/components/PostListItem";
 import { faArrowRightLong } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Post } from "@prisma/client";
@@ -24,9 +25,9 @@ export const getServerSideProps: GetServerSideProps<HomeProps> = async () => {
 export default function Home({ posts }: HomeProps) {
   return (
     <Layout>
-      <header className="my-12 w-full flex items-center gap-8 justify-center">
+      <header className="my-12 w-full flex flex-col md:flex-row items-center gap-8 justify-center">
         <Image className="w-32 rounded-full" src={me} alt="logo" />
-        <div>
+        <div className="flex flex-col items-center md:items-start">
           <h1 className="text-3xl mb-4 font-bold">My Personal Blog</h1>
           <p>
             Welcome to my personal blog. A place where I share all kind of
@@ -35,7 +36,7 @@ export default function Home({ posts }: HomeProps) {
         </div>
       </header>
       <div className="flex flex-col">
-        <h1 className="py-4 pl-2 text-3xl font-bold border-b border-gray-300">
+        <h1 className="py-4 text-3xl font-bold border-b border-gray-300">
           Latest Posts
         </h1>
         {posts.length ? (
@@ -48,24 +49,5 @@ export default function Home({ posts }: HomeProps) {
         </Link>
       </div>
     </Layout>
-  );
-}
-
-function PostListItem({ post }: { post: Post }) {
-  return (
-    <div className="px-2 py-4 border-b border-gray-300">
-      <div className="flex justify-between gap-10 items-center pr-12">
-        <Link className="hover:text-gray-500" href={`/posts/${post.id}`}>
-          <h1 className="text-2xl font-bold">{post.title}</h1>
-        </Link>
-        <p className="text-md italic">
-          {format(post.createDate, "dd MMMM yyyy")}
-        </p>
-      </div>
-      <p className="py-4">{post.description}</p>
-      <Link className="hover:text-gray-500" href={`/posts/${post.id}`}>
-        Read More <FontAwesomeIcon icon={faArrowRightLong} className="pl-1" />
-      </Link>
-    </div>
   );
 }
