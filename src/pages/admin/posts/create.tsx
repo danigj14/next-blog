@@ -1,18 +1,22 @@
-import { Button, Input, TextArea } from "@/core/components";
 import AdminLayout from "@/features/admin/components/AdminLayout";
 import PostForm from "@/features/admin/components/PostForm";
 import useCreatePostMutation from "@/features/posts/hooks/useCreatePostMutation";
-import { faBan, faCheck } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { marked } from "marked";
-import { useState } from "react";
+import { PostCreateParams } from "@/features/posts/types";
+import { useRouter } from "next/router";
 
 export default function AdminCreatePost() {
   const createPostMutation = useCreatePostMutation();
+  const { push } = useRouter();
+
+  const onSubmit = (params: PostCreateParams) => {
+    createPostMutation.mutate(params, {
+      onSuccess: () => push("/admin/posts"),
+    });
+  };
 
   return (
     <AdminLayout>
-      <PostForm onSubmit={(params) => createPostMutation.mutate(params)} />
+      <PostForm onSubmit={onSubmit} />
     </AdminLayout>
   );
 }
