@@ -1,6 +1,7 @@
 import { Button, Input, TextArea } from "@/core/components";
 import { faBan, faCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import DOMPurify from "dompurify";
 import { marked } from "marked";
 import { FormEventHandler, useState } from "react";
 
@@ -69,7 +70,9 @@ export default function PostForm({
             <div
               className="prose"
               dangerouslySetInnerHTML={{
-                __html: marked.parse(content || "New Post Content (Preview)"),
+                __html: DOMPurify.sanitize(
+                  marked.parse(content || "New Post Content (Preview)")
+                ),
               }}
             />
           </div>

@@ -1,14 +1,10 @@
 import { prisma } from "@/core/db";
 import Layout from "@/features/blog/components/Layout";
-import {
-  faArrowRight,
-  faArrowRightLong,
-} from "@fortawesome/free-solid-svg-icons";
+import { faArrowRightLong } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Post } from "@prisma/client";
 import { format } from "date-fns";
 import { GetServerSideProps } from "next";
-import Image from "next/image";
 import Link from "next/link";
 
 interface HomeProps {
