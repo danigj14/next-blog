@@ -13,11 +13,13 @@ interface PostFormParams {
 interface PostFormProps {
   initialValues?: PostFormParams;
   onSubmit: (params: PostFormParams) => void;
+  onDiscard: () => void;
 }
 
 export default function PostForm({
   initialValues,
   onSubmit = () => {},
+  onDiscard = () => {},
 }: PostFormProps) {
   const [title, setTitle] = useState(initialValues?.title || "");
   const [description, setDescription] = useState(
@@ -27,22 +29,18 @@ export default function PostForm({
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
-    onSubmit({title, description, content});
-  }
+    onSubmit({ title, description, content });
+  };
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col flex-grow">
       <div className="flex pb-4 gap-4">
         <h1 className="text-3xl">Create New Post</h1>
-        <Button
-          color="green"
-          className="ml-auto"
-          type="submit"
-        >
+        <Button color="green" className="ml-auto" type="submit">
           <FontAwesomeIcon icon={faCheck} className="pr-2" />
           Save Post
         </Button>
-        <Button color="red">
+        <Button color="red" type="button" onClick={onDiscard}>
           <FontAwesomeIcon icon={faBan} className="pr-2" />
           Discard
         </Button>
