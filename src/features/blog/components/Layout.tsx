@@ -1,10 +1,13 @@
 import { faFileLines } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useSession } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 export default function Layout({ children }: { children?: React.ReactNode }) {
   const session = useSession();
+
+  const router = useRouter();
 
   return (
     <div className="container px-8 mx-auto">
@@ -31,12 +34,12 @@ export default function Layout({ children }: { children?: React.ReactNode }) {
                 <Link href="/admin">Admin Panel</Link>
               </li>
               <li>
-                <Link href="/api/auth/signout">Logout (Admin)</Link>
+                <button onClick={() => signOut()}>Logout (Admin)</button>
               </li>
             </>
           ) : (
             <li>
-              <Link href="/api/auth/signin">Login</Link>
+              <button onClick={() => signIn()}>Login</button>
             </li>
           )}
         </ul>

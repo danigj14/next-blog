@@ -24,13 +24,15 @@ export const getServerSideProps: GetServerSideProps<HomeProps> = async () => {
 export default function Home({ posts }: HomeProps) {
   return (
     <Layout>
-      <header className="mt-4 w-full flex flex-col items-center">
+      <header className="my-12 w-full flex items-center gap-8 justify-center">
         <Image className="w-32 rounded-full" src={me} alt="logo" />
-        <h1 className="text-3xl my-4 font-bold">My Personal Blog</h1>
-        <p>
-          Welcome to my personal blog. A place where I share all kind of
-          thoughts about pretty much anything that interests me!
-        </p>
+        <div>
+          <h1 className="text-3xl mb-4 font-bold">My Personal Blog</h1>
+          <p>
+            Welcome to my personal blog. A place where I share all kind of
+            thoughts about pretty much anything that interests me!
+          </p>
+        </div>
       </header>
       <h1 className="py-4 pl-2 text-3xl font-bold border-b border-gray-300">
         Latest Posts
