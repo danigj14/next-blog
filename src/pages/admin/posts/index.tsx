@@ -1,6 +1,8 @@
 import { Button } from "@/core/components";
 import { prisma } from "@/core/db";
+import useNotifications from "@/core/hooks/useNotifications";
 import AdminLayout from "@/features/admin/components/AdminLayout";
+import useDeletePostMutation from "@/features/posts/hooks/useDeletePostMutation";
 import {
   faFileCirclePlus,
   faPencil,
@@ -10,9 +12,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Post } from "@prisma/client";
 import { format } from "date-fns";
 import { GetServerSideProps } from "next";
+import { useState } from "react";
 
 interface AdminPostsProps {
-  posts: Post[];
+  initialPosts: Post[];
 }
 
 export const getServerSideProps: GetServerSideProps<
@@ -21,11 +24,28 @@ export const getServerSideProps: GetServerSideProps<
   const posts = await prisma.post.findMany({ orderBy: { createDate: "desc" } });
 
   return {
-    props: { posts },
+    props: { initialPosts: posts },
   };
 };
 
-export default function AdminPosts({ posts }: AdminPostsProps) {
+export default function AdminPosts({ initialPosts }: AdminPostsProps) {
+  const [posts, setPosts] = useState(initialPosts);
+  const deletePostMutation = useDeletePostMutation();
+  const notifications = useNotifications();
+
+  const handleDelete = (postId: string) => {
+    deletePostMutation.mutate(postId, {
+      onSuccess: () => {
+        notifications.showNotification({
+          message: "Post was successfully deleted.",
+        });
+        setPosts((currentPosts) =>
+          currentPosts.filter((post) => post.id !== postId)
+        );
+      },
+    });
+  };
+
   return (
     <AdminLayout>
       <h1 className="text-3xl pb-4">Manage Blog Posts</h1>
@@ -48,7 +68,11 @@ export default function AdminPosts({ posts }: AdminPostsProps) {
         </thead>
         <tbody>
           {posts.map((post) => (
-            <PostsTableItem key={post.id} post={post} />
+            <PostsTableItem
+              key={post.id}
+              post={post}
+              onDelete={() => handleDelete(post.id)}
+            />
           ))}
         </tbody>
       </table>
@@ -56,7 +80,13 @@ export default function AdminPosts({ posts }: AdminPostsProps) {
   );
 }
 
-function PostsTableItem({ post }: { post: Post }) {
+function PostsTableItem({
+  post,
+  onDelete = () => {},
+}: {
+  post: Post;
+  onDelete: () => void;
+}) {
   return (
     <tr className="even:bg-gray-100">
       <td className="py-4 pl-4">{post.title}</td>
@@ -68,7 +98,7 @@ function PostsTableItem({ post }: { post: Post }) {
           <FontAwesomeIcon icon={faPencil} className="pr-2" />
           Edit
         </Button>
-        <Button color="red">
+        <Button color="red" onClick={onDelete}>
           <FontAwesomeIcon icon={faTrash} className="pr-2" />
           Delete
         </Button>
