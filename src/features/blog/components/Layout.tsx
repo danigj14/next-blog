@@ -33,16 +33,37 @@ export default function Layout({ children }: { children?: React.ReactNode }) {
             isMobileNavOpen ? "top-20" : "-top-full"
           } left-0 md:static bg-gray-50 px-10 md:px-0 w-screen md:w-fit text-xl flex-col items-start gap-6 transition-all md:flex-row pb-8`}
         >
-          <Link className="hover:text-gray-600 transition-all" href="/">Home</Link>
-          <Link className="hover:text-gray-600 transition-all" href="/posts">Posts</Link>
-          <Link className="hover:text-gray-600 transition-all" href="/tags">Tags</Link>
+          <Link className="hover:text-gray-600 transition-all" href="/">
+            Home
+          </Link>
+          <Link className="hover:text-gray-600 transition-all" href="/posts">
+            Posts
+          </Link>
+          <Link className="hover:text-gray-600 transition-all" href="/tags">
+            Tags
+          </Link>
           {session.status === "authenticated" ? (
             <>
-              <Link className="hover:text-gray-600 transition-all" href="/admin">Admin Panel</Link>
-              <button className="hover:text-gray-600 transition-all" onClick={() => signOut()}>Logout (Admin)</button>
+              <Link
+                className="hover:text-gray-600 transition-all"
+                href="/admin"
+              >
+                Admin Panel
+              </Link>
+              <button
+                className="hover:text-gray-600 transition-all"
+                onClick={() => signOut()}
+              >
+                Logout (Admin)
+              </button>
             </>
           ) : (
-            <button className="hover:text-gray-600 transition-all" onClick={() => signIn()}>Login</button>
+            <button
+              className="hover:text-gray-600 transition-all"
+              onClick={() => signIn()}
+            >
+              Login
+            </button>
           )}
         </div>
       </nav>

@@ -9,8 +9,6 @@ import Image from "next/image";
 import Link from "next/link";
 import me from "/public/images/me.jpeg";
 
-
-
 export const getServerSideProps: GetServerSideProps<HomeProps> = async () => {
   const posts = await prisma.post.findMany({ orderBy: { createDate: "desc" } });
 
@@ -45,8 +43,12 @@ export default function Home({ posts }: HomeProps) {
         ) : (
           <p>There are no posts available!</p>
         )}
-        <Link className="px-2 mt-8 text-xl w-fill w-fit hover:text-gray-500" href="/posts">
-          Navigate all Blog Posts <FontAwesomeIcon icon={faArrowRightLong} className="pl-1" />
+        <Link
+          className="px-2 mt-8 text-xl w-fill w-fit hover:text-gray-500"
+          href="/posts"
+        >
+          Navigate all Blog Posts{" "}
+          <FontAwesomeIcon icon={faArrowRightLong} className="pl-1" />
         </Link>
       </div>
     </Layout>

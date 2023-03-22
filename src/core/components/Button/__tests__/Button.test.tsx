@@ -22,5 +22,5 @@ describe("Button", () => {
     fireEvent.click(button);
 
     expect(callback).toBeCalled();
-  })
+  });
 });

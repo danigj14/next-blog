@@ -16,7 +16,10 @@ export default function PostListItem({ post }: { post: Post }) {
         </p>
       </div>
       <p className="py-4">{post.description}</p>
-      <Link className="hover:text-gray-500 font-bold" href={`/posts/${post.id}`}>
+      <Link
+        className="hover:text-gray-500 font-bold"
+        href={`/posts/${post.id}`}
+      >
         Read More <FontAwesomeIcon icon={faArrowRightLong} className="pl-1" />
       </Link>
     </div>
