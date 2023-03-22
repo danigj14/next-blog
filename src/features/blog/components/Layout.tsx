@@ -36,7 +36,7 @@ export default function Layout({ children }: { children?: React.ReactNode }) {
           <Link className="hover:text-gray-600 transition-all" href="/">Home</Link>
           <Link className="hover:text-gray-600 transition-all" href="/posts">Posts</Link>
           <Link className="hover:text-gray-600 transition-all" href="/tags">Tags</Link>
-          {session.data ? (
+          {session.status === "authenticated" ? (
             <>
               <Link className="hover:text-gray-600 transition-all" href="/admin">Admin Panel</Link>
               <button className="hover:text-gray-600 transition-all" onClick={() => signOut()}>Logout (Admin)</button>

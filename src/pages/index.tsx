@@ -4,15 +4,12 @@ import PostListItem from "@/features/posts/components/PostListItem";
 import { faArrowRightLong } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Post } from "@prisma/client";
-import { format } from "date-fns";
 import { GetServerSideProps } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import me from "/public/images/me.jpeg";
 
-interface HomeProps {
-  posts: Post[];
-}
+
 
 export const getServerSideProps: GetServerSideProps<HomeProps> = async () => {
   const posts = await prisma.post.findMany({ orderBy: { createDate: "desc" } });
@@ -21,6 +18,10 @@ export const getServerSideProps: GetServerSideProps<HomeProps> = async () => {
     props: { posts },
   };
 };
+
+interface HomeProps {
+  posts: Post[];
+}
 
 export default function Home({ posts }: HomeProps) {
   return (
