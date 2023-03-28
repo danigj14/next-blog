@@ -56,11 +56,7 @@ export default function PostForm({
         </Button>
       </div>
       <div className="flex-grow flex flex-col gap-2">
-        <Input
-          {...register("title")}
-          placeholder="New Post Title"
-          required
-        />
+        <Input {...register("title")} placeholder="New Post Title" required />
         <Input
           {...register("description")}
           placeholder="New Post Description"

@@ -14,7 +14,11 @@ export default function PostListItem({ post }: { post: Post }) {
           <Link className="hover:text-gray-500" href={`/posts/${post.id}`}>
             <h1 className="text-xl md:text-2xl font-bold">{post.title}</h1>
           </Link>
-          {post.tags.length > 0 && <div className="pt-2"><TagList tags={post.tags} /></div>}
+          {post.tags.length > 0 && (
+            <div className="pt-2">
+              <TagList tags={post.tags} />
+            </div>
+          )}
         </div>
         <p className="text-md italic">
           {format(post.createDate, "dd MMMM yyyy")}

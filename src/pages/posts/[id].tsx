@@ -31,7 +31,11 @@ export default function PostPage({ post }: PostProps) {
         <title>{post.title} | NextBlog</title>
       </Head>
       <h1 className="mt-12 text-3xl font-bold">{post.title}</h1>
-      {post.tags.length > 0 && <div className="py-2"><TagList tags={post.tags} /></div>}
+      {post.tags.length > 0 && (
+        <div className="py-2">
+          <TagList tags={post.tags} />
+        </div>
+      )}
       <p className="text-md italic mt-1 pb-4">
         Published {format(post.createDate, "dd MMMM yyyy")}
       </p>

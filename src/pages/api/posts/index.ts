@@ -36,7 +36,7 @@ async function handlePost(req: NextApiRequest, res: NextApiResponse) {
         description,
         content,
         createDate: new Date(),
-        tags
+        tags,
       },
     });
 
