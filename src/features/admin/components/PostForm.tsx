@@ -9,6 +9,7 @@ interface PostFormParams {
   title: string;
   description: string;
   content: string;
+  tags: string[];
 }
 
 interface PostFormProps {
@@ -28,11 +29,12 @@ export default function PostForm({
   const [description, setDescription] = useState(
     initialValues?.description || ""
   );
+  const [tags, setTags] = useState(initialValues?.tags.join(", ") || "");
   const [content, setContent] = useState(initialValues?.content || "");
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
-    onSubmit({ title, description, content });
+    onSubmit({ title, description, tags: tags.split(",").map(tag => tag.trim()), content });
   };
 
   return (
@@ -58,6 +60,11 @@ export default function PostForm({
           placeholder="New Post Description"
           onChange={(event) => setDescription(event.target.value)}
           value={description}
+        />
+        <Input
+          placeholder="Tags (Separate by Comma, eg: 'programming, javascript, react')"
+          onChange={(event) => setTags(event.target.value)}
+          value={tags}
         />
         <div className="flex-grow flex gap-4">
           <TextArea

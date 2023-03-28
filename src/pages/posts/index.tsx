@@ -2,15 +2,10 @@ import { Input } from "@/core/components";
 import { prisma } from "@/core/db";
 import Layout from "@/features/blog/components/Layout";
 import PostListItem from "@/features/posts/components/PostListItem";
-import {
-  faArrowRightLong,
-  faMagnifyingGlass,
-} from "@fortawesome/free-solid-svg-icons";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Post } from "@prisma/client";
-import { format } from "date-fns";
 import { GetServerSideProps } from "next";
-import Link from "next/link";
 import { useState } from "react";
 
 interface PostsProps {

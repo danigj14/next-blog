@@ -16,6 +16,7 @@ model Post {
   description   String
   content       String
   createDate    DateTime
+  tags          String[]  @default([])
 
   @@map("posts")
 }

@@ -27,15 +27,16 @@ async function handlePost(req: NextApiRequest, res: NextApiResponse) {
 
   if (!session) return res.status(401).end();
 
-  const { title, description, content } = req.body;
+  const { title, description, content, tags } = req.body;
 
-  if (title && description && content) {
+  if (title && description && content && tags) {
     const newPost = await prisma.post.create({
       data: {
         title,
         description,
         content,
         createDate: new Date(),
+        tags
       },
     });
 

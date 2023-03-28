@@ -1,5 +1,6 @@
 import { prisma } from "@/core/db";
 import Layout from "@/features/blog/components/Layout";
+import TagList from "@/features/posts/components/TagList";
 import { Post } from "@prisma/client";
 import { format } from "date-fns";
 import DOMPurify from "isomorphic-dompurify";
@@ -26,6 +27,7 @@ export default function PostPage({ post }: PostProps) {
   return (
     <Layout>
       <h1 className="mt-12 text-3xl font-bold">{post.title}</h1>
+      {post.tags.length > 0 && <div className="py-2"><TagList tags={post.tags} /></div>}
       <p className="text-md italic mt-1 pb-4">
         Published {format(post.createDate, "dd MMMM yyyy")}
       </p>

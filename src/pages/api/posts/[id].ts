@@ -22,15 +22,16 @@ async function handlePut(req: NextApiRequest, res: NextApiResponse) {
   if (!session) return res.status(401).end();
 
   const { id } = req.query;
-  const { title, description, content } = req.body;
+  const { title, description, content, tags } = req.body;
 
-  if (id && title && description && content) {
+  if (id && title && description && content && tags) {
     const updatedPost = await prisma.post.update({
       where: { id: String(id) },
       data: {
         title,
         description,
         content,
+        tags,
       },
     });
 

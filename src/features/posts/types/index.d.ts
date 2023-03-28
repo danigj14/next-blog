@@ -2,6 +2,7 @@ export interface PostCreateParams {
   title: string;
   description: string;
   content: string;
+  tags: string[];
 }
 
 export interface PostUpdateParams {
@@ -9,4 +10,5 @@ export interface PostUpdateParams {
   title?: string;
   description?: string;
   content?: string;
+  tags: string[];
 }
