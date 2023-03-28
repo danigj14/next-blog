@@ -5,10 +5,14 @@ import {
   faFileLines,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Head from "next/head";
 
 export default function AdminDashboard() {
   return (
     <AdminLayout>
+      <Head>
+        <title>Admin Panel | NextBlog</title>
+      </Head>
       <h1 className="text-3xl pb-4">Blog Admin Panel</h1>
       <p className="pb-8">
         Welcome to the blog admin panel. You can manage your blog from here!

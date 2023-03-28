@@ -6,6 +6,7 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Post } from "@prisma/client";
 import { GetServerSideProps } from "next";
+import Head from "next/head";
 import { useState } from "react";
 
 interface PostsProps {
@@ -33,6 +34,9 @@ export default function Home({ posts }: PostsProps) {
 
   return (
     <Layout>
+      <Head>
+        <title>Post List | NextBlog</title>
+      </Head>
       <div className="py-4 font-bold border-b border-gray-300 flex flex-col md:flex-row gap-4 items-start justify-between md:items-center">
         <h1 className="text-3xl">All Blog Posts</h1>
         <div className="relative block">

@@ -12,6 +12,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Post } from "@prisma/client";
 import { format } from "date-fns";
 import { GetServerSideProps } from "next";
+import Head from "next/head";
 import { useState } from "react";
 
 interface AdminPostsProps {
@@ -29,11 +30,11 @@ export const getServerSideProps: GetServerSideProps<
 };
 
 export default function AdminPosts({ initialPosts }: AdminPostsProps) {
-  const [posts, setPosts] = useState(initialPosts);
+  const [posts, setPosts] = useState<Post[]>(initialPosts);
   const deletePostMutation = useDeletePostMutation();
   const notifications = useNotifications();
 
-  const handleDelete = (postId: string) => {
+  const handleDelete = (postId: Post["id"]) => {
     deletePostMutation.mutate(postId, {
       onSuccess: () => {
         notifications.showNotification({
@@ -48,6 +49,9 @@ export default function AdminPosts({ initialPosts }: AdminPostsProps) {
 
   return (
     <AdminLayout>
+      <Head>
+        <title>Manage Posts | Admin Panel | NextBlog</title>
+      </Head>
       <h1 className="text-3xl pb-4">Manage Blog Posts</h1>
       <p className="pb-4">
         This section allows you to create, edit and remove your blog posts.

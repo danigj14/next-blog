@@ -5,6 +5,7 @@ import PostForm from "@/features/admin/components/PostForm";
 import useUpdatePostMutation from "@/features/posts/hooks/useUpdatePostMutation";
 import { Post } from "@prisma/client";
 import { GetServerSideProps } from "next";
+import Head from "next/head";
 import { useRouter } from "next/router";
 
 export const getServerSideProps: GetServerSideProps<
@@ -60,6 +61,9 @@ export default function AdminEditPost({ post }: AdminEditPostProps) {
 
   return (
     <AdminLayout>
+      <Head>
+        <title>Edit Post | Admin Panel | NextBlog</title>
+      </Head>
       <PostForm
         heading="Edit Post"
         initialValues={post}

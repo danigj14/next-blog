@@ -6,6 +6,7 @@ import { format } from "date-fns";
 import DOMPurify from "isomorphic-dompurify";
 import { marked } from "marked";
 import { GetServerSideProps } from "next";
+import Head from "next/head";
 
 interface PostProps {
   post: Post;
@@ -26,6 +27,9 @@ export const getServerSideProps: GetServerSideProps<PostProps> = async (
 export default function PostPage({ post }: PostProps) {
   return (
     <Layout>
+      <Head>
+        <title>{post.title} | NextBlog</title>
+      </Head>
       <h1 className="mt-12 text-3xl font-bold">{post.title}</h1>
       {post.tags.length > 0 && <div className="py-2"><TagList tags={post.tags} /></div>}
       <p className="text-md italic mt-1 pb-4">

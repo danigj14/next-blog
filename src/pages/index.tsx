@@ -5,6 +5,7 @@ import { faArrowRightLong } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Post } from "@prisma/client";
 import { GetServerSideProps } from "next";
+import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import me from "/public/images/me.jpeg";
@@ -24,6 +25,9 @@ interface HomeProps {
 export default function Home({ posts }: HomeProps) {
   return (
     <Layout>
+      <Head>
+        <title>NextBlog</title>
+      </Head>
       <header className="my-12 w-full flex flex-col md:flex-row items-center gap-8 justify-center">
         <Image className="w-32 rounded-full" src={me} alt="logo" />
         <div className="flex flex-col items-center md:items-start">
