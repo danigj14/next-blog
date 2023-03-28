@@ -1,10 +1,8 @@
 import { prisma } from "@/core/db";
 import useNotifications from "@/core/hooks/useNotifications";
 import AdminLayout from "@/features/admin/components/AdminLayout";
-import PostForm from "@/features/admin/components/PostForm";
-import useCreatePostMutation from "@/features/posts/hooks/useCreatePostMutation";
+import PostForm, { PostFormData } from "@/features/admin/components/PostForm";
 import useUpdatePostMutation from "@/features/posts/hooks/useUpdatePostMutation";
-import { PostCreateParams, PostUpdateParams } from "@/features/posts/types";
 import { Post } from "@prisma/client";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
@@ -49,21 +47,24 @@ export default function AdminEditPost({ post }: AdminEditPostProps) {
     });
   };
 
-  const onSubmit = (params: PostUpdateParams) => {
-    updatePostMutation.mutate(params, {
-      onSuccess: () => {
-        push("/admin/posts");
-        showSuccessNotification();
-      },
-    });
+  const onSubmit = (params: PostFormData) => {
+    updatePostMutation.mutate(
+      { id: post.id, ...params, tags: params.tags.split(", ") },
+      {
+        onSuccess: () => {
+          push("/admin/posts");
+          showSuccessNotification();
+        },
+      }
+    );
   };
 
   return (
     <AdminLayout>
       <PostForm
         heading="Edit Post"
-        initialValues={post}
-        onSubmit={(params) => onSubmit({ id: post.id, ...params })}
+        initialValues={{ ...post, tags: post.tags.join(", ") }}
+        onSubmit={onSubmit}
         onDiscard={() => push("/admin/posts")}
       />
     </AdminLayout>

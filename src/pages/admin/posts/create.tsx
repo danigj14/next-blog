@@ -1,8 +1,7 @@
 import useNotifications from "@/core/hooks/useNotifications";
 import AdminLayout from "@/features/admin/components/AdminLayout";
-import PostForm from "@/features/admin/components/PostForm";
+import PostForm, { PostFormData } from "@/features/admin/components/PostForm";
 import useCreatePostMutation from "@/features/posts/hooks/useCreatePostMutation";
-import { PostCreateParams } from "@/features/posts/types";
 import { useRouter } from "next/router";
 
 export default function AdminCreatePost() {
@@ -16,8 +15,8 @@ export default function AdminCreatePost() {
     });
   };
 
-  const onSubmit = (params: PostCreateParams) => {
-    createPostMutation.mutate(params, {
+  const onSubmit = (params: PostFormData) => {
+    createPostMutation.mutate({...params, tags: params.tags.split(", ")}, {
       onSuccess: () => {
         push("/admin/posts");
         showSuccessNotification();
