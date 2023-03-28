@@ -1,7 +1,7 @@
 import { prisma } from "@/core/db";
 import useNotifications from "@/core/hooks/useNotifications";
 import AdminLayout from "@/features/admin/components/AdminLayout";
-import PostForm, { PostFormData } from "@/features/admin/components/PostForm";
+import PostForm from "@/features/admin/components/PostForm";
 import useUpdatePostMutation from "@/features/posts/hooks/useUpdatePostMutation";
 import { Post } from "@prisma/client";
 import { GetServerSideProps } from "next";
@@ -36,7 +36,6 @@ interface AdminEditPostProps {
 }
 
 export default function AdminEditPost({ post }: AdminEditPostProps) {
-  //TODO CHANGE TO EDITPOSTMUTATION
   const updatePostMutation = useUpdatePostMutation();
   const { push } = useRouter();
   const notifications = useNotifications();
@@ -63,7 +62,7 @@ export default function AdminEditPost({ post }: AdminEditPostProps) {
     <AdminLayout>
       <PostForm
         heading="Edit Post"
-        initialValues={{ ...post, tags: post.tags.join(", ") }}
+        initialValues={post}
         onSubmit={onSubmit}
         onDiscard={() => push("/admin/posts")}
       />

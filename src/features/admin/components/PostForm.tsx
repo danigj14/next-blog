@@ -6,13 +6,13 @@ import DOMPurify from "isomorphic-dompurify";
 import { marked } from "marked";
 import { useForm } from "react-hook-form";
 
-export type PostFormData = Omit<Post, "id" | "tags"> & {
+type PostFormData = Omit<Post, "id" | "tags"> & {
   tags: string;
 };
 
 interface PostFormProps {
   heading: string;
-  initialValues?: PostFormData;
+  initialValues?: Omit<Post, "id">;
   onSubmit: (params: Omit<Post, "id">) => void;
   onDiscard: () => void;
 }
@@ -23,11 +23,11 @@ export default function PostForm({
   onSubmit = () => {},
   onDiscard = () => {},
 }: PostFormProps) {
-  const { register, handleSubmit, watch, formState } = useForm<PostFormData>({
+  const { register, handleSubmit, watch } = useForm<PostFormData>({
     defaultValues: {
       title: initialValues?.title,
       description: initialValues?.description,
-      tags: initialValues?.tags,
+      tags: initialValues?.tags?.join(", "),
       content: initialValues?.content,
     },
   });
