@@ -1,16 +1,12 @@
 import { Button, Input, TextArea } from "@/core/components";
 import { faBan, faCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Post } from "@prisma/client";
 import DOMPurify from "isomorphic-dompurify";
 import { marked } from "marked";
 import { FormEventHandler, useState } from "react";
 
-interface PostFormParams {
-  title: string;
-  description: string;
-  content: string;
-  tags: string[];
-}
+type PostFormParams = Partial<Omit<Post, "id">>;
 
 interface PostFormProps {
   heading: string;
@@ -29,12 +25,17 @@ export default function PostForm({
   const [description, setDescription] = useState(
     initialValues?.description || ""
   );
-  const [tags, setTags] = useState(initialValues?.tags.join(", ") || "");
+  const [tags, setTags] = useState(initialValues?.tags?.join(", ") || "");
   const [content, setContent] = useState(initialValues?.content || "");
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
-    onSubmit({ title, description, tags: tags.split(",").map(tag => tag.trim()), content });
+    onSubmit({
+      title,
+      description,
+      tags: tags.split(",").map((tag) => tag.trim()),
+      content,
+    });
   };
 
   return (

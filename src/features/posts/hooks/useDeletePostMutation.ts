@@ -3,7 +3,7 @@ import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 
 export default function useDeletePostMutation() {
-  return useMutation<Post, unknown, string>((postId) =>
+  return useMutation<Post, unknown, Pick<Post, "id">>((postId) =>
     axios.delete(`/api/posts/${postId}`).then((result) => result.data)
   );
 }
