@@ -13,7 +13,7 @@ export type PostFormData = Omit<Post, "id" | "tags"> & {
 interface PostFormProps {
   heading: string;
   initialValues?: PostFormData;
-  onSubmit: (params: PostFormData) => void;
+  onSubmit: (params: Omit<Post, "id">) => void;
   onDiscard: () => void;
 }
 
@@ -33,7 +33,12 @@ export default function PostForm({
   });
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col flex-grow">
+    <form
+      onSubmit={handleSubmit((data) =>
+        onSubmit({ ...data, tags: data.tags.split(", ") })
+      )}
+      className="flex flex-col flex-grow"
+    >
       <div className="flex pb-4 gap-4">
         <h1 className="text-3xl">{heading}</h1>
         <Button color="green" className="ml-auto" type="submit">

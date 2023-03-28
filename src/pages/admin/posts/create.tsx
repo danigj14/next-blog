@@ -2,6 +2,7 @@ import useNotifications from "@/core/hooks/useNotifications";
 import AdminLayout from "@/features/admin/components/AdminLayout";
 import PostForm, { PostFormData } from "@/features/admin/components/PostForm";
 import useCreatePostMutation from "@/features/posts/hooks/useCreatePostMutation";
+import { Post } from "@prisma/client";
 import { useRouter } from "next/router";
 
 export default function AdminCreatePost() {
@@ -15,8 +16,8 @@ export default function AdminCreatePost() {
     });
   };
 
-  const onSubmit = (params: PostFormData) => {
-    createPostMutation.mutate({...params, tags: params.tags.split(", ")}, {
+  const onSubmit = (params: Omit<Post, "id">) => {
+    createPostMutation.mutate(params, {
       onSuccess: () => {
         push("/admin/posts");
         showSuccessNotification();

@@ -47,9 +47,9 @@ export default function AdminEditPost({ post }: AdminEditPostProps) {
     });
   };
 
-  const onSubmit = (params: PostFormData) => {
+  const onSubmit = (params: Omit<Post, "id">) => {
     updatePostMutation.mutate(
-      { id: post.id, ...params, tags: params.tags.split(", ") },
+      { id: post.id, ...params },
       {
         onSuccess: () => {
           push("/admin/posts");
