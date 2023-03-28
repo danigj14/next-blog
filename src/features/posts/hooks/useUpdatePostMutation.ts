@@ -1,7 +1,8 @@
 import { Post } from "@prisma/client";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
-import { PostUpdateParams } from "../types";
+
+type PostUpdateParams = Pick<Post, "id"> & Partial<Omit<Post, "id">>;
 
 export default function useUpdatePostMutation() {
   return useMutation<Post, unknown, PostUpdateParams>((postUpdateParams) =>
