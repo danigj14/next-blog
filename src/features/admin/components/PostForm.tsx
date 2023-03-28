@@ -23,7 +23,12 @@ export default function PostForm({
   onSubmit = () => {},
   onDiscard = () => {},
 }: PostFormProps) {
-  const { register, handleSubmit, watch } = useForm<PostFormData>({
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm<PostFormData>({
     defaultValues: {
       title: initialValues?.title,
       description: initialValues?.description,
@@ -51,10 +56,15 @@ export default function PostForm({
         </Button>
       </div>
       <div className="flex-grow flex flex-col gap-2">
-        <Input {...register("title")} placeholder="New Post Title" />
+        <Input
+          {...register("title")}
+          placeholder="New Post Title"
+          required
+        />
         <Input
           {...register("description")}
           placeholder="New Post Description"
+          required
         />
         <Input
           {...register("tags")}
@@ -65,6 +75,7 @@ export default function PostForm({
             {...register("content")}
             className="flex-1 resize-none overflow-auto"
             placeholder="New Post Content (Markdown Syntax)"
+            required
           />
           <div className="flex-1 min-h-full h-0 py-2 px-4 border border-gray-300 rounded-lg overflow-auto">
             <div
